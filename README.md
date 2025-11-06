@@ -7,25 +7,25 @@ The scripts in the main directory are mainly used for the primary analysis of sa
 1. A scheduler python script that keeps track (using a log file, found under the *DTB_Recordings/locally_processed/* folder) of which files have been processed and runs all remaining file consecutively.
 1. A shell script that simply activates a python environment and runs the scheduler script to start processing.
 
-**Analysis steps**:
-Processing:
-Single file script: *process_single_pass.py*
-Scheduler script: *schedule_processing.py*
-Shell execution *script: run_spectograms.sh*
+**Analysis steps**:\
+Processing:\
+Single file script: *process_single_pass.py*\
+Scheduler script: *schedule_processing.py*\
+Shell execution *script: run_spectograms.sh*\
 Step explaination: Performs the FFT on the raw IQ samples, makes a selection of the 
 As this step is relatively CPU intensive and takes some time, it is recommended to run this automatically using the following crontab job to process all remaining passes twice per day:
 ```#00 5,22 * * * /home/doptrackbox/DTB_Software/adapted_processing/run_spectograms.sh >> /home/doptrackbox/DTB_Recordings/monitoring/processing_cron_log.txt 2>&1```
 
-Curvefitting:
-Single file script: *curvefit.py*
-Scheduler script: *schedule_curvefitting.py*
-Shell execution *script: run_curvefitting.sh*
-Step explaination: This script produces plots of the noise and SNR (based on the maximum power in the bin) as function of time, as well of a plot of the SNR of the extracted signal over time.
+Curvefitting:\
+Single file script: *curvefit.py*\
+Scheduler script: *schedule_curvefitting.py*\
+Shell execution *script: run_curvefitting.sh*\
+Step explaination: This step takes the frequency points classified as signal, and fits a hyperbolic tangent to the data. Then a further selection takes place until the signal is (hopefully) extrcated as well as possible.
 
-Plotting:
-Single file script: *make_pass_plots.py*
-Scheduler script: *schedule_plotting.py*
-Shell execution *script: run_plotting.sh*
+Plotting:\
+Single file script: *make_pass_plots.py*\
+Scheduler script: *schedule_plotting.py*\
+Shell execution *script: run_plotting.sh*\
 Step explaination: This script produces plots of the noise and SNR (based on the maximum power in the bin) as function of time, as well of a plot of the SNR of the extracted signal over time.
 
 
