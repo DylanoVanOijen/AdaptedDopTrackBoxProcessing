@@ -99,7 +99,7 @@ def load_DT_data(file, name, year):
     
 file_names = ["FUNcube-1_39444_202509051546_145935kHz",
               "FUNcube-1_39444_202509291618_145935kHz"]
-labels = ["With GPS Clock", "Without GPS Clock"]
+labels = ["With GPS clock", "Without GPS clock"]
 
 # Define plots
 rows = 1
@@ -152,7 +152,7 @@ for file, label, ax in zip(file_names, labels, axes):
     if current_row == rows:
         ax.set_xlabel("Time [s]")
     if current_col == 1:
-        ax.set_ylabel('Signal-to-Noise Ratio [dB]')
+        ax.set_ylabel('Signal-to-noise ratio [dB]')
     #ax.suptitle(f"{label}, Pass {pass_label}")
     ax.grid()
     ax.legend()

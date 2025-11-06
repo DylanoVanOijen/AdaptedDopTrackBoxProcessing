@@ -140,14 +140,14 @@ def plot_2d_freq(DT_data, DTB_data, tune, file, filtered):
     DTB_freq = DTB_data[:,1]
     DTB_snr = DTB_data[:,4]
 
-    ax_1.scatter(DT_time, DT_freq-tune, s=10, label = "Extracted DopTrack Signal", marker='s', c=ratio_to_db(DT_snr))
-    scat = ax_1.scatter(DTB_time, DTB_freq-tune, s=10, label = "Extracted DopTrackBox Signal", c=ratio_to_db(DTB_snr))
+    ax_1.scatter(DT_time, DT_freq-tune, s=10, label = "Extracted DopTrack signal", marker='s', c=ratio_to_db(DT_snr))
+    scat = ax_1.scatter(DTB_time, DTB_freq-tune, s=10, label = "Extracted DopTrackBox signal", c=ratio_to_db(DTB_snr))
     
     cbar = plt.colorbar(scat)
-    cbar.set_label('Signal-to-Noise Ratio [dB]') 
+    cbar.set_label('Signal-to-noise ratio [dB]') 
     ax_1.set_xlabel('Time [s]')
     ax_1.set_ylabel('Frequency [Hz]')
-    ax_1.set_title(f'Extracted Signal Frequency w.r.t. tuning frequency (= {tune}Hz)')
+    ax_1.set_title(f'Extracted signal frequency w.r.t. tuning frequency (= {tune}Hz)')
 
     #ax_1.set_ylim(0, 40)
     lowest_minimum = min(np.min(DT_time), np.min(DTB_time))
@@ -206,19 +206,19 @@ def plot_sig_noise_snr(DT_data, DTB_data, tune, file):
     #cbar.set_label('Signal-to-Noise Ratio [dB]') 
     ax1.set_yscale('log')
     ax2.set_yscale('log')
-    ax1.set_ylabel('Signal Power [-]')
+    ax1.set_ylabel('Signal power [-]')
     ax2.set_xlabel('Time [s]')
-    ax2.set_ylabel('Noise Power [-]')
-    ax1.set_title(f'Extracted Signal and Noise Power')
+    ax2.set_ylabel('Noise power [-]')
+    ax1.set_title(f'Extracted signal and noise power')
 
     ax3.set_xlabel('Time [s]')
     ax4.set_xlabel('Time [s]')
-    ax3.set_ylabel('Signal-to-Noise Ratio [-]')
-    ax4.set_ylabel('Signal-to-Noise Ratio [dB]')
+    ax3.set_ylabel('Signal-to-noise ratio [-]')
+    ax4.set_ylabel('Signal-to-noise ratio [dB]')
 
     file_without_freq = file.rsplit('_', 1)[0]
-    ax3.set_title(f"SNR Comparison of Pass {file_without_freq}")
-    ax4.set_title(f"SNR Comparison of Pass {file_without_freq}")
+    ax3.set_title(f"Comparison of pass {file_without_freq}")
+    ax4.set_title(f"Comparison of pass {file_without_freq}")
 
     #ax_1.set_ylim(0, 40)
     lowest_minimum = min(np.min(DT_time), np.min(DTB_time))

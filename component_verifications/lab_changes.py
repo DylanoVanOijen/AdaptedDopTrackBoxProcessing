@@ -102,7 +102,7 @@ file_names = [  "FUNcube-1_39444_202509241633_145935kHz",
                 "FUNcube-1_39444_202509261627_145935kHz",
                 "FUNcube-1_39444_202510021609_145935kHz"]
 
-labels = ["New RSPduo, DopTrack Coax", "New RSPduo, Original DopTrackBox Coax", "New RSPduo, Original DopTrackBox Coax, No LNA", "Full DopTrackBox, Original Coax"]
+labels = ["New RSPduo, DopTrack coax", "New RSPduo, original DopTrackBox coax", "New RSPduo, original DopTrackBox coax, no LNA", "Full DopTrackBox, original coax"]
 
 # Define plots
 rows = 2
@@ -155,8 +155,7 @@ for file, label, ax in zip(file_names, labels, axes):
     if current_row == rows:
         ax.set_xlabel("Time [s]")
     if current_col == 1:
-        ax.set_ylabel('Signal-to-Noise Ratio [dB]')
-    ax.set_ylabel('Signal-to-Noise Ratio [dB]')
+        ax.set_ylabel('Signal-to-noise ratio [dB]')
     ax.grid()
     ax.legend()
 

@@ -125,14 +125,14 @@ def load_DT_data(file, name, year):
  
 def plot_raw_freq(DT_time, DT_freq, DTB_time, DTB_freq, DTB_snr, tune, file, interpolation_function):
     fig_1, ax_1 = plt.subplots(figsize=(8,5)) 
-    ax_1.scatter(DT_time, DT_freq-tune, s=10, label = "Extracted DopTrack Signal", c='black' )
-    scat = ax_1.scatter(DTB_time, DTB_freq-tune, s=10, label = "Extracted DopTrackBox Signal", c=ratio_to_db(DTB_snr))
+    ax_1.scatter(DT_time, DT_freq-tune, s=10, label = "Extracted DopTrack signal", c='black' )
+    scat = ax_1.scatter(DTB_time, DTB_freq-tune, s=10, label = "Extracted DopTrackBox signal", c=ratio_to_db(DTB_snr))
     
     cbar = plt.colorbar(scat)
-    cbar.set_label('Signal-to-Noise Ratio [dB]') 
+    cbar.set_label('Signal-to-noise ratio [dB]') 
     ax_1.set_xlabel('Time [s]')
-    ax_1.set_ylabel(f'Frequency w.r.t. Tuning Frequency [Hz]')
-    ax_1.set_title(f'Comparison of Pass {file}')
+    ax_1.set_ylabel(f'Frequency w.r.t. tuning frequency [Hz]')
+    ax_1.set_title(f'Comparison of pass {file}')
 
     #ax_1.set_ylim(0, 40)
     lowest_minimum = min(np.min(DT_time), np.min(DTB_time))
@@ -166,7 +166,7 @@ def plot_raw_freq(DT_time, DT_freq, DTB_time, DTB_freq, DTB_snr, tune, file, int
 
     fig_2, ax_2 = plt.subplots(figsize=(8,5)) 
     ax_2.scatter(selected_DTB_time, freq_diff, s=10, c='black')
-    #scat = ax_1.scatter(DTB_time+delta_t, DTB_freq-tune+delta_f, s=10, label = f"Shifted DopTrackBox Signal (delta t = {delta_t:.2f} s, delta f = {delta_f:.1f} Hz)", c=ratio_to_db(DTB_snr))
+    #scat = ax_1.scatter(DTB_time+delta_t, DTB_freq-tune+delta_f, s=10, label = f"Shifted DopTrackBox signal (delta t = {delta_t:.2f} s, delta f = {delta_f:.1f} Hz)", c=ratio_to_db(DTB_snr))
     
     #cbar = plt.colorbar(scat)
     #cbar.set_label('Signal-to-Noise Ratio [dB]') 
@@ -205,19 +205,20 @@ def plot_raw_freq(DT_time, DT_freq, DTB_time, DTB_freq, DTB_snr, tune, file, int
     #ax_3 = fig_3.add_subplot(gs[0])
     #ax_4 = fig_3.add_subplot(gs[1], sharex=ax_3)
 
-    ax_3.scatter(DT_time, DT_freq-tune, s=10, label = "DopTrack Signal", c='black' )
-    scat = ax_3.scatter(DTB_time, DTB_freq-tune, s=10, label = "Extracted DopTrackBox Signal", c='red')#, c=ratio_to_db(DTB_snr))
+    ax_3.scatter(DT_time, DT_freq-tune, s=10, label = "DopTrack signal", c='black' )
+    scat = ax_3.scatter(DTB_time, DTB_freq-tune, s=10, label = "Extracted DopTrackBox signal", c='red')#, c=ratio_to_db(DTB_snr))
 
-    ax_3.set_ylabel(f'Frequency w.r.t. Tuning Frequency [Hz]')
-    ax_3.set_title(f'Comparison of Pass {file}')
+    ax_3.set_ylabel(f'Frequency w.r.t. tuning frequency [Hz]')
+    ax_3.set_title(f'Comparison of pass {file}')
 
     ax_3.set_xlim(lowest_minimum, higest_maximum)
     ax_3.grid()
-    ax_3.legend()
+    ax_3.legend(loc='lower left')
 
     ax_4.scatter(selected_DTB_time, freq_diff, s=10, c='black')
+    ax_4.set_ylim(-150, 150)
     ax_4.set_xlabel('Time [s]')
-    ax_4.set_ylabel('Frequency Difference [Hz]')
+    ax_4.set_ylabel('Frequency difference [Hz]')
     ax_4.grid()
 
     #cbar = fig_3.colorbar(scat, ax=[ax_3, ax_4], orientation='horizontal', pad=0.15, aspect=40)
@@ -237,14 +238,14 @@ def plot_raw_freq(DT_time, DT_freq, DTB_time, DTB_freq, DTB_snr, tune, file, int
 
 def plot_fitted_freq(DT_time, DT_freq, DTB_time, DTB_freq, DTB_snr, tune, file, delta_t, delta_f, interpolation_function):
     fig_1, ax_1 = plt.subplots(figsize=(8,5)) 
-    ax_1.scatter(DT_time, DT_freq-tune, s=10, label = "Extracted DopTrack Signal", c='black' )
-    scat = ax_1.scatter(DTB_time-delta_t, DTB_freq-tune-delta_f, s=10, label = rf"Shifted DopTrackBox Signal ($\Delta$t = {delta_t:.2f} s, $\Delta$f = {delta_f:.2f} Hz)", c=ratio_to_db(DTB_snr))
+    ax_1.scatter(DT_time, DT_freq-tune, s=10, label = "Extracted DopTrack signal", c='black' )
+    scat = ax_1.scatter(DTB_time-delta_t, DTB_freq-tune-delta_f, s=10, label = rf"Shifted DopTrackBox signal ($\Delta$t = {delta_t:.2f} s, $\Delta$f = {delta_f:.2f} Hz)", c=ratio_to_db(DTB_snr))
     
     cbar = plt.colorbar(scat)
     cbar.set_label('Signal-to-Noise Ratio [dB]') 
     ax_1.set_xlabel('Time [s]')
-    ax_1.set_ylabel(f'Frequency w.r.t. Tuning Frequency [Hz]')
-    ax_1.set_title(f'Comparison of Pass {file}')
+    ax_1.set_ylabel(f'Frequency w.r.t. tuning frequency [Hz]')
+    ax_1.set_title(f'Comparison of pass {file}')
 
     #ax_1.set_ylim(0, 40)
     lowest_minimum = min(np.min(DT_time), np.min(DTB_time))
@@ -282,7 +283,7 @@ def plot_fitted_freq(DT_time, DT_freq, DTB_time, DTB_freq, DTB_snr, tune, file, 
 
     fig_2, ax_2 = plt.subplots(figsize=(8,5)) 
     ax_2.scatter(selected_DTB_time, freq_diff, s=10, c='black')
-    #scat = ax_1.scatter(DTB_time+delta_t, DTB_freq-tune+delta_f, s=10, label = f"Shifted DopTrackBox Signal (delta t = {delta_t:.2f} s, delta f = {delta_f:.1f} Hz)", c=ratio_to_db(DTB_snr))
+    #scat = ax_1.scatter(DTB_time+delta_t, DTB_freq-tune+delta_f, s=10, label = f"Shifted DopTrackBox signal (delta t = {delta_t:.2f} s, delta f = {delta_f:.1f} Hz)", c=ratio_to_db(DTB_snr))
     
     #cbar = plt.colorbar(scat)
     #cbar.set_label('Signal-to-Noise Ratio [dB]') 
@@ -321,19 +322,20 @@ def plot_fitted_freq(DT_time, DT_freq, DTB_time, DTB_freq, DTB_snr, tune, file, 
     #ax_3 = fig_3.add_subplot(gs[0])
     #ax_4 = fig_3.add_subplot(gs[1], sharex=ax_3)
 
-    ax_3.scatter(DT_time, DT_freq-tune, s=10, label = "DopTrack Signal", c='black' )
-    scat = ax_3.scatter(DTB_time-delta_t, DTB_freq-tune-delta_f, s=10, c='red', label = rf"Shifted DopTrackBox Signal ($\Delta$t = {delta_t:.2f} s, $\Delta$f = {delta_f:.2f} Hz)")#, c=ratio_to_db(DTB_snr))
+    ax_3.scatter(DT_time, DT_freq-tune, s=10, label = "DopTrack signal", c='black' )
+    scat = ax_3.scatter(DTB_time-delta_t, DTB_freq-tune-delta_f, s=10, c='red', label = rf"Shifted DopTrackBox signal ($\Delta$t = {delta_t:.2f} s, $\Delta$f = {delta_f:.2f} Hz)")#, c=ratio_to_db(DTB_snr))
     
-    ax_3.set_ylabel(f'Frequency w.r.t. Tuning Frequency [Hz]')
-    ax_3.set_title(f'Comparison of Pass {file}')
+    ax_3.set_ylabel(f'Frequency w.r.t. tuning frequency [Hz]')
+    ax_3.set_title(f'Comparison of pass {file}')
 
     ax_3.set_xlim(lowest_minimum, higest_maximum)
     ax_3.grid()
-    ax_3.legend()
+    ax_3.legend(loc='lower left')
 
     ax_4.scatter(selected_DTB_time, freq_diff, s=10, c='black')
+    ax_4.set_ylim(-150, 150)
     ax_4.set_xlabel('Time [s]')
-    ax_4.set_ylabel('Frequency Difference [Hz]')
+    ax_4.set_ylabel('Frequency difference [Hz]')
     ax_4.grid()
 
     #cbar = fig_3.colorbar(scat, ax=[ax_3, ax_4], orientation='horizontal', pad=0.15, aspect=40)

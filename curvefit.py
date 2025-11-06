@@ -198,14 +198,14 @@ def plot_fit(file, time, freq, sig_snr, a,b,c,d, ai,bi,ci,di, tune, freq_offset,
     fig_1, ax_1 = plt.subplots(figsize=(8,5)) 
     full_time = np.arange(time[0], time[-1])
 
-    ax_1.plot(full_time, tanh(full_time, ai,bi,ci,di)-tune, color="red", linestyle = "dotted", alpha = 0.8, label = f"Initial Guess (a={ai:.0f}, b={bi:.5f}, c={ci:.2f}, d={di:.3f})", zorder=1)  
-    ax_1.plot(full_time, tanh(full_time, a,b,c,d)-tune, color="red", linestyle = "dashed", label = f"Best Fit (a={a:.0f}, b={b:.5f}, c={c:.2f}, d={d:.3f})", zorder=3)   
-    scat = ax_1.scatter(time, signal_freq, s=10, label = "Extracted Signal", c=ratio_to_db(sig_snr),zorder=2)
+    ax_1.plot(full_time, tanh(full_time, ai,bi,ci,di)-tune, color="red", linestyle = "dotted", alpha = 0.8, label = f"Initial guess (a={ai:.0f}, b={bi:.5f}, c={ci:.2f}, d={di:.3f})", zorder=1)  
+    ax_1.plot(full_time, tanh(full_time, a,b,c,d)-tune, color="red", linestyle = "dashed", label = f"Best fit (a={a:.0f}, b={b:.5f}, c={c:.2f}, d={d:.3f})", zorder=3)   
+    scat = ax_1.scatter(time, signal_freq, s=10, label = "Extracted signal", c=ratio_to_db(sig_snr),zorder=2)
     cbar = plt.colorbar(scat)
-    cbar.set_label('Signal-to-Noise Ratio [dB]') 
+    cbar.set_label('Signal-to-noise ratio [dB]') 
     ax_1.set_xlabel('Time [s]')
-    ax_1.set_ylabel(f'Frequency w.r.t. Tuning Frequency [Hz]')
-    ax_1.set_title(f'Extracted Signal Frequency of pass {file}')
+    ax_1.set_ylabel(f'Frequency w.r.t. tuning frequency [Hz]')
+    ax_1.set_title(f'Extracted signal frequency of pass {file}')
 
     #ax_1.set_ylim(0, 40)
     ax_1.set_xlim(time[0], time[-1])
@@ -226,11 +226,11 @@ def plot_fit(file, time, freq, sig_snr, a,b,c,d, ai,bi,ci,di, tune, freq_offset,
 def plot_range_rate(time, extracted_rr, fitted_rr, file):
     fig_1, ax_1 = plt.subplots(figsize=(10,5)) 
 
-    ax_1.plot(time, fitted_rr, color="red", label = "Range-rate of Best Fit")   
-    ax_1.scatter(time, extracted_rr, s=10, label = "Extracted Range-rate")
+    ax_1.plot(time, fitted_rr, color="red", label = "Range-rate of best fit")   
+    ax_1.scatter(time, extracted_rr, s=10, label = "Extracted range-rate")
     ax_1.set_xlabel('Time [s]')
-    ax_1.set_ylabel('Range-Rate [m/s]')
-    ax_1.set_title(f'Extracted Range-Rate and Best Fit')
+    ax_1.set_ylabel('Range-rate [m/s]')
+    ax_1.set_title(f'Extracted range-rate and best fit')
 
     ax_1.set_xlim(time[0], time[-1])
     ax_1.grid()

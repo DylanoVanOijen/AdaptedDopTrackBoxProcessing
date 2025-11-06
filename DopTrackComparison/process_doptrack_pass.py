@@ -152,21 +152,21 @@ def plot_spectogram(spec, dt, freqs, tuning_freq, label, is_dB):
     
     if is_dB:
         plot_data = 10*np.log10(spec)
-        cbar_label = 'Signal to noise ratio [dB]'
+        cbar_label = 'Signal-to-noise ratio [dB]'
         plot_file_label = f"Spectogram_DB/spec_{label}_spectral_dB.png"
         plot_file_label_clipped = f"Spectogram_DB_clipped/spec_{label}_spectral_dB_clipped.png"
     else:
         plot_data = spec
-        cbar_label = 'Signal to noise ratio [-]'
+        cbar_label = 'Signal-to-noise ratio [-]'
         plot_file_label = f"Spectogram/spec_{label}_spectral.png"
 
-    img_1 = ax_1.imshow(plot_data, aspect='auto', cmap=colours, extent=extent, interpolation='None', vmin=0, vmax=np.max(plot_data))#, norm=LogNorm(np.min(spec),np.max(spec)))
+    img_1 = ax_1.imshow(plot_data, aspect='auto',  cmap='viridis', extent=extent, interpolation='None', vmin=0, vmax=np.max(plot_data))#, norm=LogNorm(np.min(spec),np.max(spec)))
     cbar = fig_1.colorbar(img_1, ax=ax_1)
     cbar.set_label(cbar_label)
 
-    ax_1.set_xlabel(f'Frequency offset w.r.t. tuning frequency ({(tuning_freq / 1e6):.6f} MHz) [Hz]')
-    ax_1.set_ylabel('Time [s]')
-    ax_1.set_title('Spectrogram of ' + label)
+    ax_1.set_xlabel(f'Frequency w.r.t. tuning frequency ({(tuning_freq / 1e6):.6f} MHz) [Hz]', fontsize=18)
+    ax_1.set_ylabel('Time [s]', fontsize=18)
+    ax_1.set_title('Spectrogram of ' + label, fontsize=20)
 
     scale = 2.5
     fig_1.set_size_inches(19, 10)
@@ -178,7 +178,7 @@ def plot_spectogram(spec, dt, freqs, tuning_freq, label, is_dB):
         std = np.std(plot_data)
 
         cbar.remove()
-        img_1 = ax_1.imshow(plot_data, aspect='auto', cmap=colours, extent=extent, interpolation='None', vmin=mean, vmax=mean+1.5*std)#, norm=LogNorm(np.min(spec),np.max(spec)))
+        img_1 = ax_1.imshow(plot_data, aspect='auto',  cmap='viridis', extent=extent, interpolation='None', vmin=mean, vmax=mean+3*std)#, norm=LogNorm(np.min(spec),np.max(spec)))
         cbar = fig_1.colorbar(img_1, ax=ax_1)
         cbar.set_label(cbar_label)
 

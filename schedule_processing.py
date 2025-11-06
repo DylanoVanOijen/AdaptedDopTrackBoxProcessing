@@ -4,7 +4,7 @@ import subprocess
 from datetime import datetime, timezone
 import time
 
-PROCESS_REMOTE = False
+PROCESS_REMOTE = True
 
 LOCAL_LOC = '/home/doptrackbox/DTB_Recordings/data/'
 REMOTE_LOC = '/home/doptrackbox/tudelft_webdrive/staff-umbrella/doptrack/archive/Dylano/DopTrackBox/'
